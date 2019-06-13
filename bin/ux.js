@@ -12,7 +12,9 @@ let argvStr = process.argv;
 const ACTION = {
     'ip': '-ip',
     'help': '-help',
-    'gitcommit': 'gc' //执行 add 和 commit
+    'gitcommit': 'gc', //执行 add 和 commit
+    'gitcommitpush': 'gcp' //执行 add 和 commit
+
 }
 
 execAction();
@@ -21,14 +23,13 @@ async function execAction() {
         console.log('本机ip---->', localIp());
     } else if (argvStr.indexOf(ACTION.gitcommit) > -1) {
         var des = argvStr[3];
-        if (!des) {
+        if (!des && argvStr.length===4) {
             console.log('请输入提交说明');
             return;
         }
         var alldes = argvStr.slice(3).join(' ');
         await execShell('git add .');
         await execShell(`git commit -m"${alldes}"`);
-
 
     } else if (argvStr.indexOf(ACTION.help) > -1) {
         showHelp();
