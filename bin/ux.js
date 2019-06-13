@@ -15,7 +15,7 @@ const ACTION={
 }
 
 execAction();
-
+console.log(argvStr);
 function execAction() {
    if(argvStr.indexOf(ACTION.ip)>-1){
        console.log('本机ip---->', localIp());
