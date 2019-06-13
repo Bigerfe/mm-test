@@ -23,7 +23,7 @@ async function execAction() {
         console.log('本机ip---->', localIp());
     } else if (argvStr.indexOf(ACTION.gitcommit) > -1) {
         var des = argvStr[3];
-        if (!des && argvStr.length===4) {
+        if (!des && argvStr.length===3) {
             console.log('请输入提交说明');
             return;
         }
