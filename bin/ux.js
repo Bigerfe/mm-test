@@ -24,14 +24,26 @@ async function execAction() {
     } else if (argvStr.indexOf(ACTION.gitcommit) > -1) {
         var des = argvStr[3];
         if (!des && argvStr.length===3) {
-            console.log('请输入提交说明');
+            console.log('请输入commit说明');
             return;
         }
         var alldes = argvStr.slice(3).join(' ');
         await execShell('git add .');
         await execShell(`git commit -m"${alldes}"`);
 
-    } else if (argvStr.indexOf(ACTION.help) > -1) {
+    } else if (argvStr.indexOf(ACTION.gitcommitpush) > -1) {
+        var des = argvStr[3];
+        if (!des && argvStr.length === 3) {
+            console.log('请输入commit说明');
+            return;
+        }
+        var alldes = argvStr.slice(3).join(' ');
+        await execShell('git add .');
+        await execShell(`git commit -m"${alldes}"`);
+        await execShell(`git push`);
+
+    } 
+    else if (argvStr.indexOf(ACTION.help) > -1) {
         showHelp();
     }
 }
