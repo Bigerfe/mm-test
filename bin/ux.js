@@ -26,8 +26,10 @@ function execAction() {
            console.log('请输入提交说明');
            return;
        }
-       execShell('git add .')
-       execShell(`git commit -m"${des}"`);
+       execShell('git add .',()=>{
+           execShell(`git commit -m"${des}"`);
+       });
+      
    }
    else if (argvStr.indexOf(ACTION.help) > -1) {
         showHelp();

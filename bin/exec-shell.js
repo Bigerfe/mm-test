@@ -3,8 +3,9 @@ var shell = require('shelljs');
 
 
 var exec_fn = function (cmd, fn) {
-    setTimeout(() => {
         shell.exec(cmd, function (code, stdout, stderr) {
+            console.log('^-^ log');
+            fn&&fn();
             // if (code === 0) {
             //     console.log('reuslt ok');
             //     //fn&&fn('shell result ok'+stdout)
@@ -12,7 +13,6 @@ var exec_fn = function (cmd, fn) {
             //     console.log('shell result error'+stderr)
             // }
         });
-    }, 2000);
 
 }
 
