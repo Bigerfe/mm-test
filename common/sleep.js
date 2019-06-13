@@ -1,4 +1,5 @@
 
+//如何写一个sleep 函数
 function sleep(params) {
     this.queue=[];
 
