@@ -6,9 +6,9 @@ var exec_fn = function (cmd, fn) {
 
     shell.exec(cmd, function (code, stdout, stderr) {
         if (code === 0) {
-            //fn(stdout)
+            fn('shell result ok'+stdout)
         } else {
-            console.log(stderr)
+            console.log('shell result error'+stderr)
         }
     });
 }
