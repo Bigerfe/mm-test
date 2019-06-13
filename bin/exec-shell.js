@@ -12,7 +12,7 @@ var exec_fn = function (cmd, fn) {
             //     console.log('shell result error'+stderr)
             // }
         });
-    }, 300);
+    }, 2000);
 
 }
 
