@@ -6,7 +6,7 @@ var exec_fn = function (cmd, fn) {
 
     shell.exec(cmd, function (code, stdout, stderr) {
         if (code === 0) {
-            fn('shell result ok'+stdout)
+            fn&&fn('shell result ok'+stdout)
         } else {
             console.log('shell result error'+stderr)
         }
