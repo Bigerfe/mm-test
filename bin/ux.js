@@ -21,7 +21,7 @@ function execAction() {
        console.log('本机ip---->', localIp());
    }
    else if(argvStr.indexOf(ACTION.gitcommit)>-1){
-       var des  = argvStr[2];
+       var des  = argvStr[3];
        if(!des){
            console.log('请输入提交说明');
            return;
