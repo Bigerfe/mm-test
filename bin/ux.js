@@ -26,7 +26,7 @@ function execAction() {
            console.log('请输入提交说明');
            return;
        }
-       var alldes = argvStr.slice(3).join('');
+       var alldes = argvStr.slice(3).join(' ');
        execShell('git add .',()=>{
            execShell(`git commit -m"${alldes}"`);
        });
