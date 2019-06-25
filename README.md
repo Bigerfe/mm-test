@@ -14,7 +14,8 @@ mm gac 描述 --> git add . git commit
 mm gcp 描述 --> git add . git commit git push
 mm gst     --> git status
 mm gdf     --> git diff
-
+mm gck     --> git checkout branch
+mm gba     --> git branch -a
 ```
 
 ### ip 支持
