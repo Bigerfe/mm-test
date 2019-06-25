@@ -1,76 +1,49 @@
 #!/usr/bin/env node
 
+var log = require('../common/chalk-log');
 var program = require('commander');
-var execShell = require('./exec-shell');
+var execShell = require('../src/exec-shell');
 var appInfo = require('../package.json');
-var localIp = require('../src/ip');
+var localIp = require('../src/sip');
+var sgit = require('../src/sgit');
 
 let argvStr = process.argv;
 
+function showIp(){
+    localIp((ip)=>console.log('本机 IP:',ip));
+}
+
+log.green('hi,');
 
 //入口
 const ACTION = {
-    'ip': '-ip',
-    'help': '-help',
-    'gitcommit': 'gc', //执行 add 和 commit
-    'gitcommitpush': 'gcp' //执行 add 和 commit
-
+    'ip': showIp,
+    'help': showHelp,
+    'gac': sgit.gitAddCommit, 
+    'gcp': sgit.gitAddCommitPush,
+    'gst':sgit.gitStatus,
+    'gdf':sgit.gitDiff,
+    'gck':sgit.gitCheckBranch,
+    'gba':sgit.gitShowAllBranchs
 }
 
-execAction();
 async function execAction() {
-    if (argvStr.indexOf(ACTION.ip) > -1) {
-        console.log('本机ip---->', localIp());
-    } else if (argvStr.indexOf(ACTION.gitcommit) > -1) {
-        var des = argvStr[3];
-        if (!des && argvStr.length===3) {
-            console.log('请输入commit说明');
-            return;
-        }
-        var alldes = argvStr.slice(3).join(' ');
-        await execShell('git add .');
-        await execShell(`git commit -m"${alldes}"`);
+    const COMMAND = argvStr[2];
+    const COMMANDFN  = ACTION[COMMAND];
 
-    } else if (argvStr.indexOf(ACTION.gitcommitpush) > -1) {
-        var des = argvStr[3];
-        if (!des && argvStr.length === 3) {
-            console.log('请输入commit说明');
-            return;
-        }
-        var alldes = argvStr.slice(3).join(' ');
-        await execShell('git add .');
-        await execShell(`git commit -m"${alldes}"`);
-        await execShell(`git push`);
-
-    } 
-    else if (argvStr.indexOf(ACTION.help) > -1) {
-        showHelp();
+    if (COMMANDFN && typeof COMMANDFN ==='function'){
+        COMMANDFN(argvStr);
+    }else{
+        log.red('no matching');
     }
 }
 
-// program
-//     .version(appInfo.version)
-// program
-//     .command('ux <shell>')
 
-//     // .alias('s')
-
-//     // .description('Enter the "shell" you want to convert and include it in \" \"  ')
-
-//     // .option("-p, --path <path>", "Enter you html path , default ./share_you_shell.html")
-
-//     .action(function (options) {
-//         console.log('-------', options);
-
-//     }).on('--help', function () {
-//         console.log('  Examples:');
-//     }).on('--ip',function (params) {
-//         console.log('params',params);
-//     });
+execAction();
 
 
-//program.parse(process.argv);
+
 function showHelp() {
-    let str = 'ux -ip:查看本机ip \r\n ux -help:查看帮助';
+    let str = 'mm ip:查看本机ip \r\n mm help:查看帮助';
     console.log(str);
 }
