@@ -4,7 +4,7 @@ var log = require('../common/chalk-log');
 
 
 async function exec_fn(cmd, fn) {
-    return new Promise(resolve=>{
+    return new Promise(resolve => {
         shell.exec(cmd, {
             slient:true
         }, function (code, stdout, stderr) {
@@ -15,8 +15,26 @@ async function exec_fn(cmd, fn) {
             log.green('e*********************************');
         });
 
+        // var res = shell.exec(cmd, {
+        //     silent: true,
+        //     async:true
+        // });
+        // res.stdout.on('data', function (data) {
+        //     log.green('s*********************************');
+        //     log.green(data);
+        //     resolve();
+        //     log.green('e*********************************');
+        // });
+        // res.stderr.on('data', function (data) {
+        //     /* ... do something with data ... */
+        //     log.red('s*********************************');
+        //     log.red(data);
+        //     resolve();
+        //     log.red('e*********************************');
+        // });
+
     });
-   
+
 }
 
 module.exports = exec_fn;
