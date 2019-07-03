@@ -13,8 +13,6 @@ function showIp(){
     localIp((ip)=>console.log('本机 IP:',ip));
 }
 
-log.green('hi,');
-
 //入口
 const ACTION = {
     'ip': showIp,
@@ -44,6 +42,15 @@ execAction();
 
 
 function showHelp() {
-    let str = 'mm ip:查看本机ip \r\n mm help:查看帮助';
-    console.log(str);
+    let str = `\r\n
+    mm help :查看帮助 \r\n
+    mm ip : 查看本机ip \r\n 
+    mm gac : git add .+ git commit -m"***" \r\n
+    mm gcp : mm gac+git push \r\n
+    mm gst : git stauts \r\n
+    mm gdf : git diff \r\n
+    mm gck : git checkout [branch] \r\n
+    mm gba : git branch -a \r\n`;
+
+    log.green(str);
 }
