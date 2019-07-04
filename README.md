@@ -23,4 +23,15 @@ mm gba     --> git branch -a
 mm ip 获取本机ip
 ```
 
+
+### 环境支持
+```
+基于 node8.5+
+```
+
+### 安装
+```
+npm install mm-short-command -g
+```
+
 ## 更多命令持续更新中......
