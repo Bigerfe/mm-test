@@ -35,3 +35,9 @@ npm install mm-short-command -g
 ```
 
 ## 更多命令持续更新中......
+
+
+### 关注作者
+
+更多精彩好玩内容，请关注-作者公众号 《前端张大胖》
+![前端张大胖](https://avatars0.githubusercontent.com/u/16331920?s=460&v=4)
